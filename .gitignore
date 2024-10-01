@@ -1,0 +1,6 @@
+# vscode
+.vscode
+
+# testing
+*-main.*
+__pycache__
