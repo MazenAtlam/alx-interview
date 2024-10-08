@@ -14,7 +14,7 @@ def canUnlockAll(boxes):
     return boxes_check(boxes, my_keys, opened_boxes, boxes_count)
 
 
-def boxes_check(boxes: list, my_keys: set, opened_boxes: set, boxes_count: int):
+def boxes_check(boxes, my_keys, opened_boxes, boxes_count):
     """Check on each box to determine if it can be opened."""
     if len(my_keys) < 1:
         return len(opened_boxes) >= boxes_count
@@ -24,7 +24,7 @@ def boxes_check(boxes: list, my_keys: set, opened_boxes: set, boxes_count: int):
         opened_boxes.add(box_index)
         box_keys = boxes[box_index]
         my_keys.update(box_keys)
-        my_keys = set(filter(lambda key_index: key_index < boxes_count, my_keys))
-        my_keys = set(filter(lambda key_index: key_index not in opened_boxes, my_keys))
+        my_keys = set(filter(lambda index: index < boxes_count, my_keys))
+        my_keys = set(filter(lambda index: index not in opened_boxes, my_keys))
 
     return boxes_check(boxes, my_keys, opened_boxes, boxes_count)
