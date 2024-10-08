@@ -1,6 +1,8 @@
 #!/usr/bin/python3
+"""A module that chech lockedboxes"""
 
 def canUnlockAll(boxes):
+    """canUnlockAll function"""
     boxes_count = len(boxes)
     if boxes_count < 1:
         return True
@@ -12,7 +14,7 @@ def canUnlockAll(boxes):
 
 
 def boxesCheck(boxes:list, my_keys:set, opened_boxes:set, boxes_count:int):
-
+    """check on each box"""
     if len(my_keys) < 1:
         if len(opened_boxes) < boxes_count:
             return False
