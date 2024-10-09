@@ -24,11 +24,11 @@ def pascal_triangle(n):
         # Generate a new row of Pascal’s triangle
         row = [1]  # Initialize the first integer of the row always to 1
 
-        last_row = pascal_tri[-1] if pascal_tri else []
+        previous_row = pascal_tri[-1] if pascal_tri else []
         for col_index in range(1, row_index):
             # Each integer in the row is follow the formula:
             # pascal_tri[i][j] = pascal_tri[i-1][j] + pascal_tri[i-1][j-1]
-            row.append(last_row[col_index] + last_row[col_index - 1])
+            row.append(previous_row[col_index] + previous_row[col_index - 1])
 
         # The last integer of the row always to 1 if i is not 0
         if row_index != 0:
