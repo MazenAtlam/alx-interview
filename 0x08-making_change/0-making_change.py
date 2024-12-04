@@ -16,6 +16,9 @@ def makeChange(coins, total):
         int: The fewest number of coins needed to meet total
     """
 
+    if total <= 0:
+        return 0
+
     db = [math.inf] * (total + 1)
     db[0] = 0
 
