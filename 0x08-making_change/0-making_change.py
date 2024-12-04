@@ -2,30 +2,7 @@
 
 """A making change module"""
 
-
-def count_min_coins(coins, size, sum, db):
-    """A function that determines the fewest number of
-        coins needed to meet a given amount
-
-    Args:
-        coins (list[int]): A list of the available coins
-        size (int): The number of coins
-        sum (int): The total amount needed
-        db (list[list[int]]): A memory for the all previous solutions
-    """
-
-    if sum < 0 or size <= 0:
-        return 0
-
-    if sum == 0:
-        return 1
-
-    if db[size - 1][sum] == -1:
-        db[size - 1][sum] =\
-            count_min_coins(coins, size, sum - coins[size - 1], db) +\
-                count_min_coins(coins, size - 1, sum, db)
-
-    return db[size - 1][sum]
+import math
 
 
 def makeChange(coins, total):
@@ -39,7 +16,12 @@ def makeChange(coins, total):
         int: The fewest number of coins needed to meet total
     """
 
-    num_of_coins = len(coins)
-    db = [[-1 for _ in range(total + 1)] for _ in range(num_of_coins)]
+    db = [math.inf] * (total + 1)
+    db[0] = 0
 
-    return count_min_coins(coins, num_of_coins, total, db)
+    for subtotal in range(1, total + 1):
+        for coin in coins:
+            if subtotal - coin >= 0:
+                db[subtotal] = min(db[subtotal], db[subtotal - coin] + 1)
+
+    return db[total] if not math.isinf(db[total]) else -1
