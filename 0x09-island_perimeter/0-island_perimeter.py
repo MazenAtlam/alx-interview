@@ -4,6 +4,19 @@
 
 
 def land_track(grid, no_rows, no_columns, row, column):
+    """A function that traverse through the island and calculates its perimeter
+
+    Args:
+        grid (list[list[int]]): The island description
+        no_rows (int): number of rows in the grid
+        no_columns (int): number of columns in the grid
+        row (int): The current row index
+        column (int): The current column index
+
+    Returns:
+        int: The perimeter
+    """
+
     perimeter = 0
     grid[row][column] = -1
 
@@ -45,6 +58,15 @@ def land_track(grid, no_rows, no_columns, row, column):
 
 
 def island_perimeter(grid):
+    """A function that calculates the perimeter of an island--grid described
+
+    Args:
+        grid (list[list[int]]): The island description
+
+    Returns:
+        int: The perimeter
+    """
+
     no_rows = len(grid)
     if no_rows <= 0:
         return 0
