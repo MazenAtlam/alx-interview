@@ -2,7 +2,8 @@
 
 """An island perimeter module"""
 
-def square_perimeter(grid, no_rows, no_columns, row, column):
+
+def land_track(grid, no_rows, no_columns, row, column):
     perimeter = 0
     grid[row][column] = -1
 
@@ -11,7 +12,7 @@ def square_perimeter(grid, no_rows, no_columns, row, column):
             perimeter += 1
 
         elif grid[row + 1][column] == 1:
-            perimeter += square_perimeter(grid, no_rows, no_columns, row + 1, column)
+            perimeter += land_track(grid, no_rows, no_columns, row + 1, column)
     else:
         perimeter += 1
 
@@ -20,7 +21,7 @@ def square_perimeter(grid, no_rows, no_columns, row, column):
             perimeter += 1
 
         elif grid[row][column + 1] == 1:
-            perimeter += square_perimeter(grid, no_rows, no_columns, row, column + 1)
+            perimeter += land_track(grid, no_rows, no_columns, row, column + 1)
     else:
         perimeter += 1
 
@@ -28,7 +29,7 @@ def square_perimeter(grid, no_rows, no_columns, row, column):
         if grid[row - 1][column] == 0:
             perimeter += 1
         elif grid[row - 1][column] == 1:
-            perimeter += square_perimeter(grid, no_rows, no_columns, row - 1, column)
+            perimeter += land_track(grid, no_rows, no_columns, row - 1, column)
     else:
         perimeter += 1
 
@@ -36,7 +37,7 @@ def square_perimeter(grid, no_rows, no_columns, row, column):
         if grid[row][column - 1] == 0:
             perimeter += 1
         elif grid[row][column - 1] == 1:
-            perimeter += square_perimeter(grid, no_rows, no_columns, row, column - 1)
+            perimeter += land_track(grid, no_rows, no_columns, row, column - 1)
     else:
         perimeter += 1
 
@@ -55,6 +56,6 @@ def island_perimeter(grid):
     for row in range(len(grid)):
         for column in range(len(grid[row])):
             if grid[row][column] == 1:
-                return square_perimeter(grid, no_rows, no_columns, row, column)
+                return land_track(grid, no_rows, no_columns, row, column)
 
     return 0
