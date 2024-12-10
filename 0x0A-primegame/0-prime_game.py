@@ -17,6 +17,10 @@ def isWinner(x, nums):
         or None if the winner cannot be determined.
     """
 
+    rounds = len(nums)
+    if x != rounds or x < 1:
+        return None
+
     # Determine what are the prime numbers from 0 to max_num in nums
     # Sieve of Eratosthenes
     max_num = max(nums)
@@ -27,7 +31,7 @@ def isWinner(x, nums):
 
     for num in range(2, max_num + 1):
         if count_primes[num] == 1:
-            for prime_factor in range(2 * num, max_num, num):
+            for prime_factor in range(2 * num, max_num + 1, num):
                 count_primes[prime_factor] = 0
 
     # Prefix sun of the array to count the primes before each number
@@ -35,7 +39,6 @@ def isWinner(x, nums):
         count_primes[num] += count_primes[num - 1]
 
     # Start the game
-    rounds = x
     maria_wins = ben_wins = 0
     while (x):
         n = nums[rounds - x]
